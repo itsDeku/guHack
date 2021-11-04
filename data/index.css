@@ -1,0 +1,432 @@
+@font-face {
+  font-family: Roboto-medium;
+  src: url(fonts/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-regular;
+  src: url(fonts/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: Roboto-header;
+  src: url(fonts/EncodeSansSC-Medium.ttf);
+}
+button {
+  font-family: Roboto-medium;
+}
+
+body {
+  box-sizing: content-box;
+  padding: 0px;
+  margin: 0px;
+  height: max-content;
+  background-image: url("svg/Pattern-Randomized.svg");
+  background-attachment: fixed;
+  font-family: Roboto-medium;
+  overflow-x: hidden;
+  transition-duration: 0.5s;
+}
+
+hr {
+  margin: 0px;
+}
+/* scrollbar */
+.app {
+  transition-duration: 0.5;
+}
+body::-webkit-scrollbar,
+.textA::-webkit-scrollbar,
+.HTMLsource::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track,
+.textA::-webkit-scrollbar-track,
+.HTMLsource::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb,
+.textA::-webkit-scrollbar-thumb,
+.HTMLsource::-webkit-scrollbar-thumb {
+  /* background: #FFC489;   */
+  background-color: rgb(255, 196, 137);
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.textA::-webkit-scrollbar-thumb:hover,
+.HTMLsource::-webkit-scrollbar-thumb:hover {
+  background: rgb(250, 135, 20);
+}
+main {
+  transition: 0.5s;
+  padding-top: 7vw;
+ 
+
+}
+
+/* NAVVBARRR || Header */
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(248, 152, 56);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 6vw;
+  font-size: 2vw;
+  opacity: 0;
+}
+.sidenavCenter a {
+  padding: 1.5vw 1.5vw 0vw 1.5vw;
+  height: 3vw;
+  display: grid !important;
+  grid-gap: 2vw;
+  justify-content: center;
+}
+
+.sidenav a {
+  padding: 1.5vw 1.5px 0px 1.5px;
+  text-decoration: none;
+  margin-right: 1vw;
+  color: #f1f1f1;
+  display: block;
+  transition: 0.3s;
+}
+.sidenavCenter hr {
+  background-color: rgb(245, 245, 245);
+  width: 80%;
+  -webkit-margin-start: 10%;
+  border: 0.1vw solid rgb(230, 230, 230);
+}
+
+.sidenav a:hover {
+  color: #cecece;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0vw;
+  right: 0.1vw;
+  font-size: 3.5vw;
+  margin-left: 50px;
+}
+
+header {
+  position: absolute;
+  display: grid;
+  width: 100vw;
+  height: 7vw;
+  background: #faf9f8;
+  box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+header .sideNavButton {
+  transition: background 0.1s ease-out;
+  color : rgb(20, 20, 20);
+  text-decoration: none;
+  align-self: center;
+  justify-self: start;
+  padding: 0.5vw !important;
+  margin-left: 3vw;
+  font-size: 2.5vw;
+  border-radius: 5px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+header img {
+  width: 7vw;
+  height: 7vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  align-self: center;
+  justify-self: end;
+}
+header span {
+  font-family: Roboto-header;
+  align-self: center;
+  justify-self: center;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  font-size: 2.5vw;
+  font-weight: lighter;
+}
+
+/* header button {
+  transition: background 0.1s ease-out;
+  width: 8vw;
+  height: 4vw;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  align-self: center;
+  justify-self: end;
+  margin-right: 2vw;
+  padding: 0.8vw;
+  font-size: 1.8vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+} */
+header button:active {
+  background-color: rgb(250, 240, 230);
+}
+
+.searchContainer {
+  width: 100vw;
+}
+
+.urlSearch {
+  display: inline-grid;
+  width: 88vw;
+  margin-top: 2vw;
+  margin-left: 2vw;
+  padding: 0.8vw;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1.7vw;
+}
+
+.urlSearch:focus {
+  outline: none;
+}
+
+main button {
+  width: 4vw;
+  height: 4vw;
+  margin-top: 2vw;
+  margin-left: 2vw;
+  padding: 0.5vw;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1.7vw;
+}
+#goGetQues {
+  transition: background 0.1s ease-out;
+}
+#goGetQues:active {
+  background-color: rgb(250, 240, 230);
+}
+
+.quesContainer {
+  width: 94vw;
+  margin-left: 2vw;
+  margin-top: 2vw;
+
+  font-size: 1.7vw;
+  border: 1px solid rgb(20, 20, 20);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.connectionError {
+  padding: 2vw;
+  text-align: center;
+}
+.credError{
+  padding: 2vw;
+  text-align: center;
+}
+.sessionError { 
+  padding: 2vw;
+  text-align: center;
+}
+
+.questbox {
+  padding: 1vw;
+  font-family: Roboto-medium;
+}
+.count {
+  margin-bottom: 0.8vw;
+}
+.ques {
+  margin-bottom: 0.8vw;
+}
+.msgsBox {
+  width: 92vw;
+  padding: 1vw;
+  margin-top: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 2vw;
+  font-size: 1.7vw;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgb(20, 20, 20);
+}
+.msgg {
+  color: red;
+}
+.copyBox {
+  background: #ffffff;
+  width: 80vw;
+  height: 0vw;
+  margin-left: 15%;
+  margin-bottom: 45vw;
+}
+
+.copyBox textarea {
+  font-family: Roboto-regular;
+  resize: vertical;
+  background: white;
+  width: 80vw;
+  height: 40vw;
+  font-size: 1.5vw;
+  border-radius: 5px;
+  border: 1px solid rgb(255, 123, 16);
+}
+.copyBox textarea:focus {
+  outline: none;
+}
+.refreshText {
+  position: absolute;
+  width: 8vw;
+  height: 4vw;
+  margin-left: 3vw;
+  font-size: 1.7vw;
+  transition: background 0.1s ease-out;
+}
+.clearText {
+  position: absolute;
+  width: 8vw;
+  height: 4vw;
+  margin-top: 8vw;
+  margin-left: 3vw;
+  font-size: 1.7vw;
+  transition: background 0.1s ease-out;
+}
+.copyText {
+  position: absolute;
+  width: 8vw;
+  height: 4vw;
+  margin-top: 14vw;
+  margin-left: 3vw;
+  font-size: 1.7vw;
+  transition: background 0.3s ease-out;
+}
+.unhookText {
+  position: absolute;
+  width: 8vw;
+  height: 4vw;
+  margin-top: 20vw;
+  margin-left: 3vw;
+  font-size: 1.7vw;
+  transition: background 0.1s ease-out;
+}
+.babasvg {
+  position: absolute;
+  width: 10vw;
+  height: 15vw;
+  margin-top: 25vw;
+  margin-left: 3vw;
+}
+.refreshText:active {
+  background-color: rgb(250, 240, 230);
+} 
+.clearText:active {
+  background-color: rgb(250, 240, 230);
+}
+.unhookText:active {
+  background-color: rgb(250, 240, 230);
+}
+/* GET FORM SOURCES BLA BLA */
+.fetchFromSource {
+  margin-left: 3vw;
+}
+.getSourceMsg {
+  margin-top: 4vw;
+}
+.getSourceBtn {
+  transition: background 0.1s ease-out;
+  width: 10vw;
+  height: 4vw;
+  margin-left: 80vw;
+  margin-bottom: 1.5vw;
+  font-size: 1.7vw;
+}
+.getSourceBtn:active{
+  background: rgb(250, 240, 230);
+}
+
+.HTMLsource {
+  font-family: Roboto-regular;
+  resize: vertical;
+  font-size: 1.5vw;
+  width: 92vw;
+  outline: none;
+  height: 40vw;
+  border: 1px solid rgb(255, 123, 16);
+  border-radius: 0.3vw;
+}
+
+.HTMLsource:hover {
+  border: 1px solid rgb(255, 123, 16);
+  outline: none;
+}
+
+.provideCrad {
+  width: inherit;
+  height: inherit;
+  padding-top: 10vw;
+}
+
+.logBox {
+  margin-left: 25vw;
+  width: 40vw;
+  padding: 3vw;
+  border: 1px solid rgb(248, 152, 56);
+  border-radius: 0.5vw;
+  background: white;
+  font-size: 1.8vw;
+  font-family: Roboto-regular;
+}
+.Uform{
+  padding-top: 2vw;
+  padding-left: 5vw;
+}
+.Uform input{
+  display: block;
+  outline: none;
+  height: 2vw;
+  border: .1vw solid rgb(40, 40, 40);
+  border-radius: .5vw;
+  margin-top: .5vw;
+  margin-bottom: 2vw;
+  padding: .8vw;
+  font-size: 1.8vw;
+  width: 30vw;
+}
+.togglePass {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  bottom: 5.7vw;
+  width: 3vw;
+  height: 3.5vw;
+  margin-left: 28vw;
+  padding-left: .5vw ;
+  line-height: 3.5vw;
+  font-size: 2.5vw;
+  user-select: none;
+}
+.Uform button {
+  transition: background 0.5s ease-out;
+  height: 4vw;
+  width: 8vw;
+  margin-top: 0;
+  margin-left: 10vw;
+}
+
+#about {
+  width: 100%;
+  height: 100%;
+  margin-top: 5vw;
+  margin-left: 2vw;
+}
+.aboutText {
+  width: 94vw;
+}

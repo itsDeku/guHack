@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galgotias lms toolkit</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="galgotias.png" type="image/x-icon">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body onload="checkAPI();" >
+    <header>
+        <a href="javascript:void(0)" class="sideNavButton" onclick="openNav()">&#9776</a>
+        <img src="galgotias.png" alt=""><span>Galgotias LMS Toolkit</span>
+        <!-- <button type="button" href="" onclick="About(this);">About</button> -->
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="sidenavCenter">
+                <a href="javascript:void(0)" onclick="home(this);">Home</a>
+                <hr>
+                <a href="javascript:void(0)" onclick="provideCradential(this)" >Provide Credentials</a>
+                <hr>
+                <a href="javascript:void(0)" onclick="GetFromSource(this);">Fetch from source</a>
+                <hr>
+                <a type="button" href="javascript:void(0)" onclick="About(this);">About</a>
+                <hr>
+            </div>
+        </div>
+    </header>
+    <main id="main" class="main">
+        <div id="app">
+            <div class="searchContainer">
+                <input type='text' class="urlSearch" value=""
+                    placeholder="put the lms url here to get questions eg.https://lms.galgotiasuniversity.edu.in/mod/quiz/attempt.php?attempt=******&cmid=****** "></input>
+                <button id="goGetQues" onclick="sendUrl(this);">Go</button>
+            </div>
+            <div class="quesContainer" style="display:none">
+            </div>
+            <div class="copyContainer">
+                <div class="msgsBox"><label for="msgg">Msg: </label><span class="msgg">press ctrl+d to copy and ctrl+q
+                        to paste</span></div>
+                <button class="refreshText" onclick="javascript:location.reload(true)">Refresh</button>
+                <button class="clearText" onclick="ClearText();">Clear</button>
+                <button class="copyText" value="" onclick="sendText(this);">Copy</button>
+                <button class="unhookText" onclick="unHook(this);">Unhook</button>
+                <img class="babasvg" src="svg/baba.svg" alt="" srcset="">
+                <div class="copyBox"><textarea class="textA" value name="" id="" cols="30"
+                        rows="10"></textarea></div>
+                <!-- <div id="questi"></div>
+                <div id="answers"></div> -->
+            </div>
+        </div>
+        <div id="provideCrad" class="provideCrad" style="display: none;">
+            <div class="logBox"> 
+                <p><center>provide the login details for the Url Search to work. alternativly you can use Fetch From source to fetch Questions.</center></p>
+                <form class="Uform" action="javascript:void(0)">
+                    <label for="Uuser" > <b>Email:</b></label>
+                    <input id="Uuser" type="text"  required>
+                    <label for="Upassword"><b>Password:</b></label>
+                    <div>
+                        <input type="password" id="Upassword" type="text"required>
+                        <div class="togglePass" onclick="togglePass();"><img src="svg/eye.svg" alt="" srcset="" style="width: 2.5vw;height: 3.5vw;"></div>
+                    </div>
+                    <button id="saveCrad" type="submit" onclick="saveCradential(this);">Save</button>
+                </form>
+            </div>
+
+        </div>
+        <div id="getFromSource" class="fetchFromSource" style="display: none;">
+            <div class="getSource">
+                <div class="getSourceMsg"><span>Paste the website page source to fetch the Questions. if the Url Search doesn't work. you can see the website page source by pressing (ctrl + U).
+                </span></div>
+                <button class="getSourceBtn" onclick="sendSources();">click me</button>
+                <textarea class="HTMLsource" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+        <div id="about" style="display: none;">
+            <div class="aboutText"><span>
+                Warning : Copying text may take some time wait for at least 15s - 30s in some cases it can freeze the window. try to keep the text to be copied as
+                minimum as possible to avoid these issue.
+            </span>
+                <p>Made for Educational Purposes only
+               .</p>
+                <p>Developed by : Artist Baba.</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        const checkAPI = () => {
+            about = document.getElementById("about")
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://guhack191914.herokuapp.com/");
+            request.onreadystatechange = function() {
+            if(this.readyState === 4 && this.status === 200) {
+                about.innerHTML = request.responseText
+            }
+            }
+            request.send();
+        } 
+        function openNav() {
+            mysideNav = document.getElementById("mySidenav")
+            mysideNav.style = "width:35vw;opacity: 1;"
+        }
+
+        function closeNav() {
+            mysideNav = document.getElementById("mySidenav")
+            mysideNav.style = "width:0;opacity: 0;"
+        }
+
+        function Navigate(x) {
+            document.getElementById("provideCrad").style = 'display:none;opacity:0'
+            document.getElementById("getFromSource").style = 'display:none;opacity:0'
+            document.getElementById("app").style = 'display:none;opacity:0'
+            document.getElementById("about").style = 'display:none;opacity:0'
+            document.getElementById(x).style = 'display:block;opacity:1'
+        }
+        // sideNav Navigation
+        const home = () => {
+            Navigate("app")
+            closeNav()
+        }
+        const provideCradential = () => {
+            Navigate("provideCrad")
+            closeNav()
+        }
+        const GetFromSource = () => {
+            Navigate("getFromSource")
+            closeNav()
+        }
+        const About = () => {
+            Navigate("about")
+            closeNav()
+        }
+
+        app = document.getElementById("app")
+        about = document.getElementById("about")
+        document.addEventListener('keyup', (event) => {
+            if (event.ctrlKey && event.key === 'd') {
+                sendText(document.getElementsByClassName('copyText')[0])
+            }
+        })
+        const unHook = (obj) => {
+            eel.unhook()
+            resetCopyBtn()
+        }
+        atAbout = false
+        // const About = () => {
+        //     if(!atAbout){
+        //         document.getElementById("app").style = 'display:none'
+        //         document.getElementById("about").style = 'display:block'
+        //         closeNav()
+
+        //     }
+        //     if(atAbout){
+        //         document.getElementById("app").style = 'display:block'
+        //         document.getElementById("about").style = 'display:none'
+        //         closeNav()
+
+        //     }
+        //     atAbout = !atAbout
+        // }
+        que = []
+        ans = []
+        const ClearText = () => {
+            document.getElementsByClassName('textA')[0].value = ''
+        }
+        const sendText = (obs) => {
+            let copytex = document.getElementsByClassName('textA')[0].value
+            eel.pasteText(copytex)
+            obs.style = "background:#fabb7c"
+            obs.innerHTML = "Copied!"
+        }
+        eel.expose(resetCopyBtn);
+
+        function resetCopyBtn() {
+            newss = document.getElementsByClassName('copyText')[0]
+            newss.style = "background-color:#fff"
+            newss.innerHTML = "Copy"
+        }
+
+        let quesCont = document.getElementsByClassName("quesContainer")[0]
+        eel.expose(fetchHTML);
+        function fetchHTML(quesStr, answStr, count) {
+            quesCont.innerHTML = quesCont.innerHTML + "<div class='questbox'><div class='count'>Q" + count +
+                ").</div><div class='ques' >" + quesStr + "</div><div class='answ'>" + answStr + "</div></div><hr/>"
+            quesCont.style = "display:block"
+
+        }
+        const saveCradential = (obj) => {
+            user = document.getElementById("Uuser").value
+            pass = document.getElementById("Upassword").value
+            eel.setCradential(user,pass)
+        }
+        eel.expose(credSaved)
+        function credSaved() {
+            saveBtn = document.getElementById('saveCrad')
+            saveBtn.style = "background:#fabb7c"
+            saveBtn.innerHTML = "saved"
+        }
+
+        const sendSources = () => {
+            sources = document.getElementsByClassName('HTMLsource')[0].value
+            eel.fetchFormSource(sources)
+            Navigate('app')
+        }
+        const sendUrl = (obj) => {
+            searchURL = document.getElementsByClassName('urlSearch')[0].value
+            eel.fetchFromReq(searchURL)
+            
+        }
+        eel.expose(connectionNotMade)
+        function connectionNotMade(err) {
+            quesCont.innerHTML = "<div class='connectionError'><p style='color:red'>Connection could not be made!!!</p><p>Check your Internet Connection. failing to connect to the server.</p></div>"
+            quesCont.style = "display:block"
+        }
+        eel.expose(credentialsNotFound)
+        function credentialsNotFound(err) {
+            quesCont.innerHTML = "<div class='credError'><p style='color:red'>Credentials Not Set!!!</p><p>Without Credentials you cannot fetch Questions. go to the Provide Credentials tab to enter your login info.</p></div>"
+            quesCont.style = "display:block"
+        }
+        eel.expose(sessionNotCreated)
+        function sessionNotCreated() {
+            quesCont.innerHTML = "<div class='sessionError'><p style='color:red'>Session Not Created!!!</p><p>UserID or Password Provided in Provide Credentials tab might not be Correct.</p></div>"
+            quesCont.style = "display:block"
+        }
+        const togglePass = () =>  {
+            pass = document.getElementById("Upassword")   
+            if(pass.type == "text")
+                pass.type = "password"
+            else
+                pass.type = "text"
+        }   
+    </script>
+    
+</body>
+
+</html>
